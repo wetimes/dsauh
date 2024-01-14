@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条款和条件</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #e0f2f1; /* 浅蓝色背景 */
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+            color: #666;
+        }
+        footer {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        #disagreeBtn {
+            background-color: #ff5757;
+            color: #fff;
+            border: none;
+        }
+        #agreeBtn {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+        }
+        #notRemindCheckbox {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>服务条款</h1>
+    </header>
+
+    <section>
+        <h2>1. 条款一</h2>
+        <p>我们不保证本网站的内容完整性，如有遗漏请联系该软件的开发者</p>
+    </section>
+
+    <section>
+        <h2>2. 条款二</h2>
+        <p>我们不保证本网站24小时运营，但我们会尽可能在除3:00-23:00的其他时间正常运营</p>
+    </section>
+
+    <section>
+        <h2>3. 条款三</h2>
+        <p>我们保证已开通文件保护业务的用户文件不被自然灾害损坏，其他用户数据除因自然灾害的同样受到保护</p>
+    </section>
+
+    <footer>
+        <div>
+            <p>日期：2024年01月13日</p>
+        </div>
+        <div>
+            <label for="notRemindCheckbox">下次不再提醒</label>
+            <input type="checkbox" id="notRemindCheckbox">
+            <button id="disagreeBtn" onclick="disagree()">不同意</button>
+            <button id="agreeBtn" onclick="agree()">我已认真阅读并同意</button>
+        </div>
+    </footer>
+
+    <script>
+        // 在页面加载时检查是否需要提醒
+        window.onload = function() {
+            var notRemind = localStorage.getItem('notRemind');
+            if (notRemind === 'true') {
+                // 如果用户选择不再提醒，则直接跳转到目标页面
+                window.location.href = "http://localhost/Access_Denied.html";
+            }
+        };
+
+        function disagree() {
+            if (confirm("您确定要退出吗？")) {
+                window.close();
+            }
+        }
+
+        function agree() {
+            // 检查是否勾选了下次不再提醒的选项
+            var notRemindCheckbox = document.getElementById('notRemindCheckbox');
+            if (notRemindCheckbox.checked) {
+                // 将用户选择保存在本地，以便下次访问时检查
+                localStorage.setItem('notRemind', 'true');
+            }
+            // 替换下面的 your-server-ip 为你的服务器实际 IP 地址
+            window.location.href = "http://localhost/Access_Denied.html";
+        }
+    </script>
+
+</body>
+</html>
